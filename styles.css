@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(42, 118, 185);
+}
+
+.clock {
+    display: inline-block;
+    margin: 0, auto;
+    padding: 20px;
+    width: 50%;
+
+}
