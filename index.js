@@ -211,23 +211,29 @@ class App extends React.Component {
     render(){
         return(
             <div className="clock">
+                <h1 className="header">Pomodoro Clock</h1>
+                <hr></hr>
                 <audio src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" id="beep" preload="auto"></audio>
-                <div className="seshBox">
-                    <div id="session-label">Session Length</div>
-                    <button id="session-increment" onClick={this.addSesh}></button>
-                    <div id="session-length">{this.state.sessonCount}</div>
-                    <button id="session-decrement" onClick={this.subSesh}></button>
-                </div>
-                <div className="breakBox">
-                    <div id="break-label">"Break Length"</div>
-                    <button id="break-increment" onClick={this.addBreak}></button>
-                    <div id="break-length">{this.state.breakCount}</div>
-                    <button id="break-decrement" onClick={this.subBreak}></button>
+                <div className="incrementBox">
+                <div id="session-label">Session Length:</div>
+                    <div className="seshBox">
+                        <button id="session-decrement" onClick={this.subSesh}>-</button>
+                        <div id="session-length">{this.state.sessonCount}</div>
+                        <button id="session-increment" onClick={this.addSesh}>+</button>
+                    </div>
+                    <div id="break-label">Break Leangth:</div>
+                    <div className="breakBox">
+                        <button id="break-decrement" onClick={this.subBreak}>-</button>
+                        <div id="break-length">{this.state.breakCount}</div>
+                        <button id="break-increment" onClick={this.addBreak}>+</button>
+                        </div>
                 </div>
                 <div id="timer-label">{this.timerLabel()}</div>
                 <div id="time-left">{this.timeConvert(this.getTime())}</div>
-                <button id="start_stop" onClick={this.startOrPause}>Start / Stop</button>
-                <button id="reset" onClick={this.reset}>Reset</button>
+                <div className="bottomButtons">
+                    <button id="start_stop" onClick={this.startOrPause}>Start / Stop</button>
+                    <button id="reset" onClick={this.reset}>Reset</button>
+                </div>
             </div>
         )
     }

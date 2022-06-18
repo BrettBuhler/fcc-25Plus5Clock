@@ -1,17 +1,99 @@
 body {
-    background-color: rgb(42, 118, 185);
+    background: linear-gradient(90deg, rgb(12, 50, 68), rgb(5, 47, 80));
 }
 
-.clock {
-    display: inline-block;
-    margin: 0, auto;
+.clock{
+    position: absolute;
     padding: 20px;
+    width: 80vw;
+    height: 80vh;
+    background: linear-gradient(35deg, rgb(26, 130, 221),rgba(3, 83, 101, 0.33));
+    left: 10vw;
+    top: 10vh;
+    border: 5px solid black;
+    border-radius: 20px;
+}
+.header {
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.seshBox, .breakBox {
+    display: flex; 
+}
+.incrementBox{
+    position: absolute;
+    display: grid;
     width: 50%;
-
+    height: 45%;
+    margin: 0, auto;
+    padding: 10px;
+    border: 1px dotted black;
+    left: 25%;
+    justify-content: center;
+}
+#break-label, #session-label{
+    width: 35vw;
+    height: 4vh;
+    font-size: 1.6rem;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 5vh;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 5px solid black;
+}
+#session-length, #break-length{
+    position: relative;
+    font-size: 1.6rem;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 5vw;
+    text-align: center;
 }
 
-.seshBox {
-    display: inline-block;
-    
-    
+#session-increment, #session-decrement, #break-increment, #break-decrement{
+    width: 15vw;
+    height: 4vh;
+    position: relative;
+    margin: 2vh, auto;
+    border: 5px solid black;
+    border-radius: 20px;
+    background-color: transparent;
+    margin-top: 1vh;
+    font-size: 2vh;
+}
+#session-increment:hover, #session-decrement:hover, #break-increment:hover, #break-decrement:hover{
+    background-color: black;
+    color: white;
+}
+#start_stop:hover, #reset:hover {
+    background-color: black;
+    color: white;
+}
+#start_stop, #reset {
+    width: 18vw;
+    height: 6vh;
+    position: relative;
+    margin: 5vh, auto;
+    border: 5px solid black;
+    border-radius: 20px;
+    background-color: transparent;
+    margin-top: 1vh;
+    font-size: 2vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.bottomButtons{
+    position:absolute;
+    display: grid;
+    justify-content: center;
+}
+#timer-label, #time-left {
+    font-size: 5vw;
+    text-align: left;
+    max-width: 20vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
 }
