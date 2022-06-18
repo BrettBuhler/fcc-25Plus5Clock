@@ -4,8 +4,8 @@ class App extends React.Component {
         this.state = {
             sessonCount: 25,
             breakCount: 5,
-            sessionLength: 5,
-            breakLength: 5,
+            sessionLength: 60*25,
+            breakLength: 60*5,
             pause: true,
             active: false,
             reset: false
@@ -27,7 +27,7 @@ class App extends React.Component {
     timeConvert (time) {
         let minutes = Math.floor(time/60);
         let seconds = time % 60
-        if(time == 0) {
+        if(time <= 0) {
             return "00:00";
         } else if (time < 10){
         return minutes.toString() + "0:0" + seconds.toString();
@@ -54,7 +54,6 @@ class App extends React.Component {
         })
         let breakSeconds = breakTime;
         let interval = setInterval( () => {
-            console.log("hi")
             if (this.state.reset){
                 this.setState({
                     reset: false
@@ -63,13 +62,11 @@ class App extends React.Component {
             }
         if (!this.state.pause){
             seconds = this.state.sessionLength;
-            console.log(seconds);
             seconds--;
-            console.log(seconds);
             this.setState({
                 sessionLength: seconds
             })
-            if(seconds < 0) {
+            if(seconds < -1) {
                 this.playSound();
                 clearInterval(interval);
                 let interval2 = setInterval(() => {
@@ -85,14 +82,16 @@ class App extends React.Component {
                     this.setState({
                         breakLength: breakSeconds
                     })
-                    if(breakSeconds < 0){
+                    //try down here
+                    if(breakSeconds < -2){
+                        console.log("this is the break length" + this.state.breakLength);
                         this.playSound();
                         clearInterval(interval2);
                         this.setState({
                             sessionLength: this.state.sessonCount *60,
                             breakLength: this.state.breakCount * 60
                         })
-                        this.timer(this.state.sessionLength, this.state.breakLength)
+                        this.timer()
                     }
                     }
                 },1000)
@@ -188,7 +187,9 @@ class App extends React.Component {
         document.getElementById("beep").currentTime = 0;
     }
     timerLabel () {
-        if(this.state.sessionLength > -1){
+        if(this.state.sessionLength > -1 && this.state.breakLength > 0){
+            return "Session";
+        } else if (this.state.sessionLength < 0 && this.state.breakLength < 0) {
             return "Session";
         } else {
             return "Break";
@@ -197,6 +198,9 @@ class App extends React.Component {
     getTime () {
         if(this.state.sessionLength > -1) {
             return this.state.sessionLength;
+        } else if (this.state.sessionLength < 0 && this.state.breakLength < 0) {
+           
+            return this.state.sessonCount *60;
         } else {
             return this.state.breakLength;
         }
